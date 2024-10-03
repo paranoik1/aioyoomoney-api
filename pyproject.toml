@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aioyoomoney-api"
+version = "0.0.8"
+description = "Async Yoomoney API"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "aiohttp",
+    "requests",
+    "python-dateutil"
+]
+
+[project.urls]
+GitHub = "https://github.com/paranoik1/aioyoomoney-api"
