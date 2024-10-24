@@ -43,7 +43,7 @@ pip install aioyoomoney-api
 You can install from source with:
 
 ```bash
-git clone https://github.com/Kokokoshmar/aioyoomoney-api
+git clone https://github.com/paranoik1/aioyoomoney-api
 cd aioyoomoney-api
 pip install .
 ```
