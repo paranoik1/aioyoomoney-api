@@ -2,7 +2,7 @@
 
 # 🚀 Yoomoney API (async) - Неофициальная Python библиотека
 
-![Python](https://img.shields.io/badge/python-3.7+-blue.svg)
+![Python](https://img.shields.io/badge/python-3.12+-blue.svg)
 ![License](https://img.shields.io/github/license/paranoik1/aioyoomoney-api)
 ![Version](https://img.shields.io/pypi/v/aioyoomoney-api)
 
