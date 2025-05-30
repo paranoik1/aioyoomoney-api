@@ -1,10 +1,12 @@
 # 🚀 Yoomoney API (async) - Неофициальная Python библиотека
 
 <div style="text-align: center">
+    
 ![Python](https://img.shields.io/badge/python-3.12+-blue.svg)
 ![Version](https://img.shields.io/pypi/v/aioyoomoney-api)
 
 > Асинхронная Python библиотека для работы с API [YooMoney](https://yoomoney.ru).
+
 </div>
 
 🔗 **Основано на репозитории**: [AlekseyKorshuk/yoomoney-api](https://github.com/AlekseyKorshuk/yoomoney-api)
