@@ -1,6 +1,6 @@
 # 🚀 Yoomoney API (async) - Неофициальная Python библиотека
 
-<div style="text-align: center">
+<div align=center>
     
 ![Python](https://img.shields.io/badge/python-3.12+-blue.svg)
 ![Version](https://img.shields.io/pypi/v/aioyoomoney-api)
