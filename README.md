@@ -1,46 +1,38 @@
-# API Yoomoney (async) - unofficial python library
+Вот улучшенная визуальная составляющая README.md с переводом на русский:
 
-This is an unofficial [YooMoney](https://yoomoney.ru) API python
-library.
+# 🚀 Yoomoney API (async) - Неофициальная Python библиотека
 
-[This repository](https://github.com/AlekseyKorshuk/yoomoney-api) was
-taken as a basis.
+![Python](https://img.shields.io/badge/python-3.7+-blue.svg)
+![License](https://img.shields.io/github/license/paranoik1/aioyoomoney-api)
+![Version](https://img.shields.io/pypi/v/aioyoomoney-api)
 
-# Introduction
+Асинхронная Python библиотека для работы с API [YooMoney](https://yoomoney.ru).
 
+🔗 **Основано на репозитории**: [AlekseyKorshuk/yoomoney-api](https://github.com/AlekseyKorshuk/yoomoney-api)
 
-This repository is based on the official documentation of
-[YooMoney](https://yoomoney.ru/docs/wallet).
+## 📖 Введение
 
-Features
-========
+Библиотека разработана на основе официальной документации [YooMoney](https://yoomoney.ru/docs/wallet).
 
-Implemented methods:
+## 🌟 Возможности
 
--   [Access token](#access-token) - Getting an access token
--   Account information - Getting information about the status of the
-    user account.
--   [Operation history](#operation-history) - This method allows viewing the full or partial
-    history of operations in page mode. History records are displayed in
-    reverse chronological order (from most recent to oldest).
--   [Operation details](#operation-details) - Provides detailed information about a
-    particular operation from the history.
--   [Quickpay forms](#quickpay-forms) - The YooMoney form is a set of fields with
-    information about a transfer. You can embed payment form into your
-    interface (for instance, a website or blog). When the sender pushes
-    the button, the details from the form are sent to YooMoney and an
-    order for a transfer to your wallet is initiated.
+Реализованные методы:
 
-Installation
-============
+- [Получение токена доступа](#access-token) для доступа к API сервису
+- [Информация об аккаунте](#client-info) - Получение информации о статусе пользовательского аккаунта
+- [История операций](#operation-history) - Просмотр полной или частичной истории операций с постраничной навигацией
+- [Детали операции](#operation-details) - Подробная информация о конкретной операции
+- [Формы быстрой оплаты](#quickpay-forms) - Встраиваемые платежные формы для перевода средств
 
-You can install with:
+## 📦 Установка
+
+Установка через pip:
 
 ```bash
 pip install aioyoomoney-api
 ```
 
-You can install from source with:
+Установка из исходников:
 
 ```bash
 git clone https://github.com/paranoik1/aioyoomoney-api
@@ -48,25 +40,15 @@ cd aioyoomoney-api
 pip install .
 ```
 
-Quick start
-===========
+## 🚀 Быстрый старт
 
-Access token
-------------
+### <a name="access-token"></a>🔑 Получение токена доступа
 
-First of all we need to receive an access token.
-
-1.  Log in to your YooMoney wallet with your username. If you do not
-    have a wallet, [create it](https://yoomoney.ru/reg).
-2.  Go to the [App
-    registration](https://yoomoney.ru/myservices/new) page.
-3.  Set the application parameters. Save CLIENT\_ID and
-    YOUR\_REDIRECT\_URI for net steps
-4.  Click the Confirm button.
-5.  Paste CLIENT\_ID, REDIRECT\_URI and CLIENT\_SECRET insted of
-    YOUR\_CLIENT\_ID, YOUR\_REDIRECT\_URI and YOUR\_CLIENT\_SECRET.
-    Choose scopes and run code.
-6.  Follow all steps from the program.
+1. Войдите в свой [YooMoney кошелек](https://yoomoney.ru). Если у вас его нет - [создайте](https://yoomoney.ru/reg)
+2. Перейдите на страницу [регистрации приложения](https://yoomoney.ru/myservices/new)
+3. Заполните параметры приложения. Сохраните CLIENT_ID и REDIRECT_URI
+4. Нажмите кнопку "Подтвердить"
+5. Замените YOUR_CLIENT_ID, YOUR_REDIRECT_URI и YOUR_CLIENT_SECRET на реальные значения
 
 ```python
 from aioyoomoney import authorize
@@ -87,117 +69,92 @@ token = authorize(
 print(token)
 ```
 
-You are done with the most difficult part!
-
-Account information
--------------------
-
-Paste YOUR_TOKEN and run this code:
+### <a name="client-info"></a>💳 Информация об аккаунте
 
 ```python
 import asyncio
-
 from aioyoomoney import Client
-
 
 async def client_info():
     client = Client(YOUR_TOKEN)
-
     account = await client.account_info()
 
-    print(f"Account: {account.id}")
-    print(f"Balance: {account.balance}")
-    print(f"Currency: {account.currency}")
-    print(f"Account Status: {account.account_status}")
-    print(f"Account Type: {account.account_type}")
-    print(f"Balance Details: {account.balance_details}")
-    print(f"Cards Linked: {account.cards_linked}")
-
+    print(f"Аккаунт: {account.id}")
+    print(f"Баланс: {account.balance}")
+    print(f"Валюта: {account.currency}")
+    print(f"Статус: {account.account_status}")
+    print(f"Тип аккаунта: {account.account_type}")
+    print(f"Детали баланса: {account.balance_details}")
+    print(f"Привязанные карты: {account.cards_linked}")
 
 asyncio.run(client_info())
 ```
 
-Operation history
------------------
-
-Paste YOUR_TOKEN and run this code:
+### <a name="operation-history"></a>📜 История операций
 
 ```python
 import asyncio
-
 from aioyoomoney import Client
 from dataclasses import fields
 
-
 async def get_operation_history():
     client = Client(YOUR_TOKEN)
-
     history = await client.operation_history()
-    print("Next record:", history.next_record)
+    
+    print("Следующая запись:", history.next_record)
     for operation in history.operations:
         for field in fields(operation):
             if field.name != "kwargs":
-                print(field.name, '->', operation[field.name])
+                print(f"{field.name} -> {operation[field.name]}")
 
         for key, value in operation.kwargs.items():
-            print(key, '->', value)
+            print(f"{key} -> {value}")
 
-        print("================================")
-
+        print("="*30)
 
 asyncio.run(get_operation_history())
 ```
 
-Operation details
------------------
-
-Paste YOUR_TOKEN with an OPERATION_ID (example: 670244335488002312):
+### <a name="operation-details"></a>🔍 Детали операции
 
 ```python
 import asyncio
 from aioyoomoney import Client
 from dataclasses import fields
 
-
 async def get_operation_details():
     client = Client(YOUR_TOKEN)
-
     operation = await client.operation_details(OPERATION_ID)
+    
     for field in fields(operation):
         if field.name != "kwargs":
-            print(field.name, '->', operation[field.name])
+            print(f"{field.name} -> {operation[field.name]}")
 
     for key, value in operation.kwargs.items():
-        print(key, '->', value)
-
+        print(f"{key} -> {value}")
 
 asyncio.run(get_operation_details())
 ```
 
-Quickpay forms
---------------
-
-Run this code:
+### <a name="quickpay-forms"></a>💸 Формы быстрой оплаты
 
 ```python
 import asyncio
 from aioyoomoney import Quickpay
 
-
 async def quickpay():
     async with Quickpay(
-        receiver="899999999999999",
+        receiver="4100111111111111",
         quickpay_form="shop",
-        targets="Sponsor this project",
+        targets="Поддержка проекта",
         payment_type="SB",
         sum=10,
-        form_comment='test',
-        label="label"
+        form_comment='Тестовая оплата',
+        label="order123"
     ) as quickpay:
-        print(quickpay.redirected_url)
-        print(quickpay.base_url)
-        print(quickpay.payload)
-
+        print(f"URL: {quickpay.redirected_url}")
+        print(f"Базовый URL с параметрами: {quickpay.base_url}")
+        print(f"Параметры: {quickpay.payload}")
 
 asyncio.run(quickpay())
 ```
