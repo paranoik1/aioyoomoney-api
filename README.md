@@ -144,19 +144,17 @@ asyncio.run(get_operation_details())
 import asyncio
 from aioyoomoney import Quickpay
 
-async def quickpay():
+
+async def quickpay(receiver: str, sum: int, label: str = None):
     async with Quickpay(
-        receiver="4100111111111111",
-        quickpay_form="shop",
-        targets="Поддержка проекта",
-        payment_type="SB",
-        sum=10,
-        form_comment='Тестовая оплата',
-        label="order123"
+        receiver=receiver,
+        sum=sum,
+        label=label
     ) as quickpay:
         print(f"URL: {quickpay.redirected_url}")
         print(f"Базовый URL с параметрами: {quickpay.base_url}")
         print(f"Параметры: {quickpay.payload}")
 
-asyncio.run(quickpay())
+
+asyncio.run(quickpay("4100111111111111", 5000, "test-label-quickpay"))
 ```
